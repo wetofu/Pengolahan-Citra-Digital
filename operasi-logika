@@ -1,0 +1,67 @@
+#!/usr/bin/python3
+
+from PIL import Image
+import sys
+import cv2
+
+def FUNC(meth, f1, f2, f3 = None):
+	if meth != "not":
+		file1 = cv2.imread(f1)
+		file2 = cv2.imread(f2)
+	else:
+		file1 = cv2.imread(f1)
+
+	if meth == "and":
+		hasil = cv2.bitwise_and(file1, file2)
+		cv2.imwrite(f3, hasil)
+	elif meth == "or":
+		hasil = cv2.bitwise_or(file1, file2)
+		cv2.imwrite(f3, hasil)
+	elif meth == "xor":
+		hasil = cv2.bitwise_xor(file1, file2)
+		cv2.imwrite(f3, hasil)
+	elif meth == "not":
+		hasil = cv2.bitwise_not(file1)
+		cv2.imwrite(f2, hasil)
+	elif meth == "not-and":
+		hasil = cv2.bitwise_and(cv2.bitwise_not(file1), file2)
+		cv2.imwrite(f3, hasil)
+	elif meth == "add":
+		hasil = cv2.add(file1, file2)
+		cv2.imwrite(f3, hasil)
+	elif meth == "sub":
+		hasil = cv2.subtract(file1, file2)
+		cv2.imwrite(f3, hasil)
+	elif meth == "mul":
+		hasil = cv2.multiply(file1, file2)
+		cv2.imwrite(f3, hasil)
+	# De-allocate any associated memory usage 
+	if cv2.waitKey(0) & 0xff == 27:
+		cv2.destroyAllWindows()
+
+if __name__ == '__main__':
+	if len(sys.argv) == 5:
+		meth = sys.argv[1].lower()
+		file_1 = sys.argv[2]
+		file_2 = sys.argv[3]
+		o_file = sys.argv[4]
+		FUNC(meth, file_1, file_2, o_file)
+
+	elif len(sys.argv) == 4:
+		meth = sys.argv[1].lower()
+		file_1 = sys.argv[2]
+		o_file = sys.argv[3]
+		FUNC(meth, file_1, o_file)
+	else: 
+		print("""penggunaan : ./imgOp [method] [file_1] &/ [file_2] [output_file]
+method :
+	- and
+	- xor
+	- or
+	- not
+	- add
+	- sub
+	- mul
+contoh :
+	./imgOp and file1.jpg file2.jpg hasil_and.jpg
+	./imgOp not file1.jpg hasil_not.jpg""")
