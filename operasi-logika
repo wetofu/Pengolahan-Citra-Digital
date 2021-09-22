@@ -59,6 +59,7 @@ method :
 	- xor
 	- or
 	- not
+	- not-and
 	- add
 	- sub
 	- mul
