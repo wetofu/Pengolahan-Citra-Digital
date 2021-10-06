@@ -1,6 +1,6 @@
 # Pengolahan-Citra-Digital
 
-Pengolahan gambar :
+Pengolahan gambar :  affine.py, log.py, operasi-logika, power.py, rotate.py 
 - and
 - or
 - xor
@@ -14,3 +14,7 @@ Pengolahan gambar :
 - log
 - power
 - affine
+
+Perbaikan Citra : perbaikan_citra.py
+- average
+- median
