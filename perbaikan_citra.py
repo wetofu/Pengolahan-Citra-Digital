@@ -6,7 +6,6 @@ nama_file = "einstein.jpg"
 # nama_file = "sinichi.jpg"
 ein = Image.open(nama_file)
 ein = ein.convert('L')
-print(ein.mode)
 d_ein = ein.load()
 
 size = width, height = ein.size
